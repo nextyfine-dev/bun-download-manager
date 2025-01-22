@@ -1,10 +1,10 @@
-# 🛠️ bun-download-manager
+# 🛠️ bun-downloader-manager
 
-`bun-download-manager` is a simple yet powerful package manager-like download manager built with **Bun.js**. It allows you to download files sequentially or with a queue-based approach, handling retries and concurrency limits efficiently. This tool is designed to integrate seamlessly into Node.js applications, providing an easy-to-use interface for managing downloads.
+`bun-downloader-manager` is a simple yet powerful package manager-like download manager built with **Bun.js**. It allows you to download files sequentially or with a queue-based approach, handling retries and concurrency limits efficiently. This tool is designed to integrate seamlessly into Node.js applications, providing an easy-to-use interface for managing downloads.
 
 ## 📚 Table of Contents
 
-- [🛠️ bun-download-manager](#️-bun-download-manager)
+- [🛠️ bun-downloader-manager](#️-bun-downloader-manager)
   - [📚 Table of Contents](#-table-of-contents)
   - [🔧 Features](#-features)
   - [🚀 Installation](#-installation)
@@ -35,36 +35,36 @@
 
 ## 🚀 Installation
 
-To install `bun-download-manager`, you can use **npm** or **yarn**:
+To install `bun-downloader-manager`, you can use **npm** or **yarn**:
 
 ### Using npm:
 
 ```bash
-npm install bun-download-manager
+npm install bun-downloader-manager
 ```
 
 ### Using yarn:
 
 ```bash
-yarn add bun-download-manager
+yarn add bun-downloader-manager
 ```
 
 ### Using bun:
 
 ```bash
-bun add bun-download-manager
+bun add bun-downloader-manager
 ```
 
 ## 🔍 Usage
 
-Here are some examples of how you can use `bun-download-manager` in your project.
+Here are some examples of how you can use `bun-downloader-manager` in your project.
 
 ### Queue Download Example
 
 The **queue method** downloads multiple files with concurrency control. It uses a priority-based queue to manage download tasks.
 
 ```ts
-import DownloadManager from "bun-download-manager";
+import DownloadManager from "bun-downloader-manager";
 
 const urls = [
   "https://example.com/file1.jpeg",
@@ -92,7 +92,7 @@ In this example, the downloads will be handled in a queue with a maximum concurr
 In this example, tasks are added to the queue manually using `enqueueDownloadTask`. This gives you more flexibility in managing each download task individually.
 
 ```ts
-import DownloadManager from "bun-download-manager";
+import DownloadManager from "bun-downloader-manager";
 
 const urls = [
   "https://example.com/file1.jpeg",
@@ -123,7 +123,7 @@ In this example, each URL is manually added to the queue using the `enqueueDownl
 The **simple method** downloads files one by one in sequence, without managing a queue.
 
 ```ts
-import DownloadManager from "bun-download-manager";
+import DownloadManager from "bun-downloader-manager";
 
 const urls = [
   "https://example.com/file1.jpeg",
@@ -147,7 +147,7 @@ This method is useful when you don't need concurrency and want to download files
 You can define your own logic for generating file names during the download process.
 
 ```ts
-import DownloadManager from "bun-download-manager";
+import DownloadManager from "bun-downloader-manager";
 
 const urls = [
   "https://example.com/file1.jpeg",

@@ -1,4 +1,4 @@
-import DownloadManager from "./modules/DownloadManager";
+import DownloadManager from "bun-downloader-manager";
 
 const urls = [
   "https://example.com/zdcyYvX.jpeg",
@@ -18,11 +18,7 @@ const getFileName = (url: string) => {
 };
 
 // queue download example 1
-const downloadManager1 = new DownloadManager({
-  consoleLog: true,
-  getFileName,
-  method: "queue",
-});
+const downloadManager1 = new DownloadManager();
 
 await downloadManager1.download(urls);
 

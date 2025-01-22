@@ -1,7 +1,18 @@
 {
-  "name": "bun-download-manager",
-  "module": "index.ts",
+  "name": "bun-downloader-manager",
+  "module": "dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "bun --watch src/example.ts"
   },
@@ -10,5 +21,39 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  }
+  },
+  "version": "1.0.6",
+  "description": "bun-download-manager is a simple yet powerful package manager-like download manager built with Bun.js. It allows you to download files sequentially or with a queue-based approach, handling retries and concurrency limits efficiently.",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nextyfine-dev/bun-download-manager.git"
+  },
+  "keywords": [
+    "bun-download-manager",
+    "download-manager",
+    "file-downloader",
+    "download-queue",
+    "simple-download",
+    "concurrent-downloads",
+    "retry-downloads",
+    "queue-based-downloader",
+    "task-priority",
+    "file-management",
+    "download-manager-bun",
+    "bun-file-downloader",
+    "async-downloads",
+    "download-retry",
+    "nodejs-download",
+    "typescript-download-manager",
+    "bun-download-utility",
+    "task-scheduler",
+    "batch-downloader"
+  ],
+  "author": "nextyfine-dev, sdeepx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nextyfine-dev/bun-download-manager/issues"
+  },
+  "homepage": "https://github.com/nextyfine-dev/bun-download-manager#readme"
 }
