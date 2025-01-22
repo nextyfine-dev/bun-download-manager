@@ -8,7 +8,12 @@ class DownloadManager {
   private readonly method: "simple" | "queue"; // Download method
   private readonly downloadFolder: string;
   private readonly getFileName?: (url: string) => string;
+  private readonly otherTaskFunction?: (
+    url: string,
+    fileName: string
+  ) => Promise<void>;
   private readonly log: boolean;
+  private readonly overWriteFile: boolean;
 
   constructor(options: DownloadManagerOptions = {}) {
     const {
@@ -17,7 +22,9 @@ class DownloadManager {
       retries = 3,
       consoleLog = false,
       downloadFolder = "./downloads",
+      overWriteFile = false,
       getFileName,
+      otherTaskFunction,
     } = options;
 
     this.method = method;
@@ -26,6 +33,8 @@ class DownloadManager {
     this.log = consoleLog;
     this.downloadFolder = downloadFolder;
     this.getFileName = getFileName;
+    this.otherTaskFunction = otherTaskFunction;
+    this.overWriteFile = overWriteFile;
 
     // Initialize queue if the method is "queue"
     if (this.method === "queue") {
@@ -45,22 +54,30 @@ class DownloadManager {
   // Method to handle single URL download
   private async downloadFile(url: string, fileName: string) {
     try {
-      this.logger(`Download started from ${url}`);
-      const res = await fetch(url);
-      if (res.status !== 200) {
+      const file = Bun.file(`${this.downloadFolder}/${fileName}`);
+      const isFileExists = await file.exists();
+      if (!isFileExists || this.overWriteFile) {
+        this.logger(`Download started from ${url}`);
+        const res = await fetch(url);
+        if (res.status !== 200) {
+          this.logger(
+            `Could not download the file from ${url}, status ${res.status}`,
+            "error"
+          );
+          throw new Error(
+            `Download failed from ${url} with status ${res.status}`
+          );
+        }
+        await file.write(res);
         this.logger(
-          `Could not download the file from ${url}, status ${res.status}`,
-          "error"
-        );
-        throw new Error(
-          `Download failed from ${url} with status ${res.status}`
+          `File ${fileName} downloaded successfully. Downloaded from ${url}`
         );
       }
-      const file = Bun.file(`${this.downloadFolder}/${fileName}`);
-      await file.write(res);
-      this.logger(
-        `File ${fileName} downloaded successfully. Downloaded from ${url}`
-      );
+
+      if (this.otherTaskFunction) {
+        this.logger("Running other task function");
+        await this.otherTaskFunction(url, fileName);
+      }
       return true;
     } catch (error) {
       this.logger(

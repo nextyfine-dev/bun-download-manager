@@ -13,4 +13,6 @@ export type DownloadManagerOptions = {
   consoleLog?: boolean;
   downloadFolder?: string;
   getFileName?: (url: string) => string;
+  otherTaskFunction?: (url: string, fileName: string) => Promise<void>;
+  overWriteFile?: boolean;
 };
