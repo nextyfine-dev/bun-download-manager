@@ -22,7 +22,7 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "bun-download-manager is a simple yet powerful package manager-like download manager built with Bun.js. It allows you to download files sequentially or with a queue-based approach, handling retries and concurrency limits efficiently.",
   "main": "index.ts",
   "repository": {
@@ -48,7 +48,8 @@
     "typescript-download-manager",
     "bun-download-utility",
     "task-scheduler",
-    "batch-downloader"
+    "batch-downloader",
+    "bun"
   ],
   "author": "nextyfine-dev, sdeepx",
   "license": "MIT",
